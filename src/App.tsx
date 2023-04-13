@@ -1,31 +1,42 @@
 import './App.css'
 import {Grid, GridItem, Show} from "@chakra-ui/react";
 import Navbar from "./components/Navbar/Navbar";
+import {useContext} from "react";
+import {dataContext} from "./state/data-context";
+import GameCard from "./components/GameCard/Card";
+import GameGrid from "./components/GameGrid/GameGrid";
 
 function App() {
+    const {games} = useContext(dataContext)
 
-  return (
-    <>
-        <Grid
-            templateAreas={{
-            base:`"nav" "main"`,
-            lg:`"nav nav" "aside main"`
-        }}
-            templateColumns={{
-                base: '1fr',
-                lg: '250px 1fr'
-            }}
-        >
-            <GridItem area={"nav"}>
-                <Navbar/>
-            </GridItem>
-            <Show above={"lg"}>
-            <GridItem area={"aside"}>aside</GridItem>
-            </Show>
-            <GridItem area={"main"}>main</GridItem>
-        </Grid>
-    </>
-  )
+    return (
+        <>
+            <Grid
+                templateAreas={{
+                    base: `"nav" "main"`,
+                    lg: `"nav nav" "aside main"`
+                }}
+                templateColumns={{
+                    base: '1fr',
+                    lg: '250px 1fr'
+                }}
+            >
+                <GridItem area={"nav"}>
+                    <Navbar/>
+                </GridItem>
+                <Show above={"lg"}>
+                    <GridItem area={"aside"}>aside</GridItem>
+                </Show>
+                <GridItem area={"main"}>
+                    <GameGrid>
+                        {games.map(item => <GameCard key={item.id} id={item.id} name={item.name}
+                                                     background_image={item.background_image}
+                                                     metacritic={item.metacritic} platforms={item.platforms}/>)}
+                    </GameGrid>
+                </GridItem>
+            </Grid>
+        </>
+    )
 }
 
 export default App

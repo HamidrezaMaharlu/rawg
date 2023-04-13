@@ -8,10 +8,8 @@ import GameGrid from "./components/GameGrid/GameGrid";
 
 function App() {
     const {games} = useContext(dataContext)
-    console.log(games)
-
     return (
-        <>
+        <div className={"app"}>
             <Grid
                 templateAreas={{
                     base: `"nav" "main"`,
@@ -36,7 +34,7 @@ function App() {
                     </GameGrid>
                 </GridItem>
             </Grid>
-        </>
+        </div>
     )
 }
 

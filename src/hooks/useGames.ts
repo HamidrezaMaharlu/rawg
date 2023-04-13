@@ -1,4 +1,3 @@
-import React from 'react';
 import useData from "./useData";
 
 export interface Game{
@@ -6,10 +5,14 @@ export interface Game{
     name:string,
     background_image:string,
     metacritic:number,
-    platforms:Platform[]
+    parent_platforms:Platform[]
 }
-interface Platform {
-    platform:{platform:{id:number,name:string}}
+export interface Platform {
+    platform:everyPlatform
+}
+export interface everyPlatform{
+    id:number,
+    slug:string,
 }
 
 function UseGames() {

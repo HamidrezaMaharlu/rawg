@@ -1,18 +1,16 @@
-import {useContext} from "react";
-import {dataContext} from "../../state/data-context";
-import {Card, CardBody, CardHeader, Heading, HStack, Img} from "@chakra-ui/react";
+import {Card, CardBody, Heading, HStack, Img} from "@chakra-ui/react";
 import {Game} from "../../hooks/useGames";
+import Platforms from "../Platforms/Platforms";
 
 
-function GameCard({background_image, name,}: Game) {
-
+function GameCard({background_image, name,parent_platforms}: Game) {
     return (
         <Card borderRadius={8} overflow={"hidden"}>
             <Img src={background_image} height={200}/>
             <CardBody>
                 <Heading fontSize={"xl"}>{name}</Heading>
                 <HStack>
-                    
+                    <Platforms platforms={parent_platforms}/>
                 </HStack>
             </CardBody>
         </Card>

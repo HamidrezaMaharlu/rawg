@@ -10,6 +10,7 @@ export interface QuerySearch{
     genres?: {id:number,name:string} | null
     ordering?:string | null
     parent_platforms?: { id:number,name:string }| null
+    search:string|null
 }
 
 function useData<T>(endpoint:string,QueryParams?:QuerySearch) {
@@ -19,7 +20,7 @@ function useData<T>(endpoint:string,QueryParams?:QuerySearch) {
 
     useEffect(() => {
         setIsLoading(true)
-        apiCall.get<fetchRequest<T>>(endpoint,{params: {genres:QueryParams?.genres?.id,ordering:QueryParams?.ordering,parent_platforms:QueryParams?.parent_platforms?.id}}).then(res => setData(res.data.results)).catch(err => setError(err)).finally(() => setIsLoading(false))
+        apiCall.get<fetchRequest<T>>(endpoint,{params: {genres:QueryParams?.genres?.id,ordering:QueryParams?.ordering,parent_platforms:QueryParams?.parent_platforms?.id,search:QueryParams?.search}}).then(res => setData(res.data.results)).catch(err => setError(err)).finally(() => setIsLoading(false))
     }, [QueryParams])
 
     return {data, error, isLoading}

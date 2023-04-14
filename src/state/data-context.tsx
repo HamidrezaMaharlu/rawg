@@ -21,7 +21,9 @@ interface ContextData {
     QueryParams:QuerySearch,
     platforms:PlatformsParent[],
     setSelectedPlatform:(platform:string)=>void,
-    selectedPlatform:string
+    selectedPlatform:string,
+    setSortOrder: (sortOrder: string) => void;
+    sortOrder: string;
 
 }
 
@@ -36,12 +38,16 @@ export const dataContext = createContext<ContextData>({
     QueryParams:{},
     platforms:[],
     setSelectedPlatform:()=>{},
-    selectedPlatform:"Platforms"
+    selectedPlatform:"Platforms",
+    sortOrder:"",
+    setSortOrder:()=>{}
+
 })
 
 function DataContextProvider({children}: Props) {
     const [QueryParams, setQueryParams] = useState<QuerySearch>({} as QuerySearch)
     const [selectedPlatform, setSelectedPlatform] = useState("Platforms")
+    const [sortOrder, setSortOrder] = useState("")
     const {data: games, error: gameError, isLoading: isLoadingGame} = useGames(QueryParams)
     const {data: genres, error: genreError, isLoading: isLoadingGenre} = useGenres()
     const {data: platforms} = usePlatforms()
@@ -58,7 +64,9 @@ function DataContextProvider({children}: Props) {
             QueryParams,
             platforms,
             setSelectedPlatform,
-            selectedPlatform
+            selectedPlatform,
+            sortOrder,
+            setSortOrder
         }}>
             {children}
         </dataContext.Provider>

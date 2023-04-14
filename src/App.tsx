@@ -7,6 +7,7 @@ import GameCard from "./components/GameCard/GameCard";
 import GameGrid from "./components/GameGrid/GameGrid";
 import GenresAside from "./components/Genres/Genres";
 import PlatFormSelector from "./components/PlatformSelector/PlatFormSelector";
+import SortSelector from "./components/SortSelector/SortSelector";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
                 <GridItem area={"main"}>
                     <HStack marginLeft={4}>
                         <PlatFormSelector/>
+                        <SortSelector/>
                     </HStack>
                     <GameGrid>
                         {games.map(item => <GameCard key={item.id} id={item.id} name={item.name}

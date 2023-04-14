@@ -13,7 +13,7 @@ function PlatFormSelector() {
             <MenuList>
                 {platforms.map(item=><MenuItem onClick={() =>{
                     setSelectedPlatform(item.name)
-                    setQueryParams({...QueryParams,parent_platforms:item.id})
+                    setQueryParams({...QueryParams,parent_platforms:{id:item.id,name:item.name}})
                 }} key={item.id}>{item.name}</MenuItem>)}
             </MenuList>
         </Menu>

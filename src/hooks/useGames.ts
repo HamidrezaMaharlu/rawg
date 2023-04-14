@@ -1,4 +1,4 @@
-import useData from "./useData";
+import useData, {QuerySearch} from "./useData";
 
 export interface Game{
     id:number,
@@ -15,8 +15,8 @@ export interface everyPlatform{
     slug:string,
 }
 
-function UseGames() {
-    return useData<Game>("/games")
+function UseGames(gameQuery:QuerySearch) {
+    return useData<Game>("/games",gameQuery)
 }
 
 export default UseGames;

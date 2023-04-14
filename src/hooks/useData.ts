@@ -9,6 +9,7 @@ interface fetchRequest<T>{
 export interface QuerySearch{
     genres?:number | null
     ordering?:string | null
+    parent_platforms?:number| null
 }
 
 function useData<T>(endpoint:string,QueryParams?:QuerySearch) {

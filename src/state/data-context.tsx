@@ -3,6 +3,7 @@ import useGames, {Game} from "../hooks/useGames";
 import useGenres, {Genre} from "../hooks/useGenres";
 import {AxiosError} from "axios";
 import {QuerySearch} from "../hooks/useData";
+import usePlatforms, {PlatformsParent}from "../hooks/usePlatforms";
 
 
 interface Props {
@@ -17,7 +18,10 @@ interface ContextData {
     gameError: AxiosError | null
     genreError: AxiosError | null,
     setQueryParams:({}:QuerySearch)=>void
-    QueryParams:QuerySearch
+    QueryParams:QuerySearch,
+    platforms:PlatformsParent[],
+    setSelectedPlatform:(platform:string)=>void,
+    selectedPlatform:string
 
 }
 
@@ -29,13 +33,18 @@ export const dataContext = createContext<ContextData>({
     genreError: null,
     gameError: null,
     setQueryParams:()=>{},
-    QueryParams:{}
+    QueryParams:{},
+    platforms:[],
+    setSelectedPlatform:()=>{},
+    selectedPlatform:"Platforms"
 })
 
 function DataContextProvider({children}: Props) {
     const [QueryParams, setQueryParams] = useState<QuerySearch>({} as QuerySearch)
+    const [selectedPlatform, setSelectedPlatform] = useState("Platforms")
     const {data: games, error: gameError, isLoading: isLoadingGame} = useGames(QueryParams)
     const {data: genres, error: genreError, isLoading: isLoadingGenre} = useGenres()
+    const {data: platforms} = usePlatforms()
 
     return (
         <dataContext.Provider value={{
@@ -46,7 +55,10 @@ function DataContextProvider({children}: Props) {
             genreError,
             isLoadingGenre,
             setQueryParams,
-            QueryParams
+            QueryParams,
+            platforms,
+            setSelectedPlatform,
+            selectedPlatform
         }}>
             {children}
         </dataContext.Provider>

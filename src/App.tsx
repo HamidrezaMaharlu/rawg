@@ -1,11 +1,12 @@
 import './App.css'
-import {Grid, GridItem, Show} from "@chakra-ui/react";
+import {Grid, GridItem, HStack, Show} from "@chakra-ui/react";
 import Navbar from "./components/Navbar/Navbar";
 import {useContext} from "react";
 import {dataContext} from "./state/data-context";
 import GameCard from "./components/GameCard/GameCard";
 import GameGrid from "./components/GameGrid/GameGrid";
 import GenresAside from "./components/Genres/Genres";
+import PlatFormSelector from "./components/PlatformSelector/PlatFormSelector";
 
 
 function App() {
@@ -30,6 +31,9 @@ function App() {
                     </GridItem>
                 </Show>
                 <GridItem area={"main"}>
+                    <HStack marginLeft={4}>
+                        <PlatFormSelector/>
+                    </HStack>
                     <GameGrid>
                         {games.map(item => <GameCard key={item.id} id={item.id} name={item.name}
                                                      background_image={item.background_image}

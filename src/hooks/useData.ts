@@ -10,7 +10,7 @@ export interface QuerySearch{
     genres?: {id:number,name:string} | null
     ordering?:string | null
     parent_platforms?: { id:number,name:string }| null
-    search:string|null
+    search?:string|null
 }
 
 function useData<T>(endpoint:string,QueryParams?:QuerySearch) {

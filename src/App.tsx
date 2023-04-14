@@ -5,14 +5,16 @@ import {useContext} from "react";
 import {dataContext} from "./state/data-context";
 import GameCard from "./components/GameCard/GameCard";
 import GameGrid from "./components/GameGrid/GameGrid";
-import GenresAside from "./components/Genres/Genres";
+import GenresAside from "./components/GenresAside/GenresAside";
 import PlatFormSelector from "./components/PlatformSelector/PlatFormSelector";
 import SortSelector from "./components/SortSelector/SortSelector";
 import GameHeading from "./components/GameHeading/GameHeading";
+import GameCardSkeleton from "./components/Skeleton/Skeleton";
 
 
 function App() {
-    const {games} = useContext(dataContext)
+    const {games,isLoadingGame} = useContext(dataContext)
+    const skeleton=[1,2,3,4,5,6,7,8,9]
     return (
         <div className={"app"}>
             <Grid
@@ -39,7 +41,8 @@ function App() {
                         <SortSelector/>
                     </HStack>
                     <GameGrid>
-                        {games.map(item => <GameCard key={item.id} id={item.id} name={item.name}
+                        {isLoadingGame&&skeleton.map(item=><GameCardSkeleton key={item}/>)}
+                        {!isLoadingGame&&games.map(item => <GameCard key={item.id} id={item.id} name={item.name}
                                                      background_image={item.background_image}
                                                      metacritic={item.metacritic}
                                                      parent_platforms={item.parent_platforms}/>)}

@@ -9,11 +9,11 @@ function GameCard({background_image, name,parent_platforms,metacritic}: Game) {
         <Card borderRadius={8} overflow={"hidden"}>
             <Img src={background_image} height={200}/>
             <CardBody>
-                <Heading fontSize={"xl"}>{name}</Heading>
                 <HStack justifyContent={"space-between"}>
                     <Platforms platforms={parent_platforms}/>
                     <CriticScore score={metacritic}/>
                 </HStack>
+                <Heading fontSize={"xl"}>{name}</Heading>
             </CardBody>
         </Card>
     );

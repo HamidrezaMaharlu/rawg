@@ -8,6 +8,7 @@ import GameGrid from "./components/GameGrid/GameGrid";
 import GenresAside from "./components/Genres/Genres";
 import PlatFormSelector from "./components/PlatformSelector/PlatFormSelector";
 import SortSelector from "./components/SortSelector/SortSelector";
+import GameHeading from "./components/GameHeading/GameHeading";
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
                     </GridItem>
                 </Show>
                 <GridItem area={"main"}>
+                    <GameHeading/>
                     <HStack marginLeft={4}>
                         <PlatFormSelector/>
                         <SortSelector/>
